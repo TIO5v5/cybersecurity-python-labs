@@ -1,21 +1,24 @@
-import os
 import hashlib
 import hmac
+import os
 import re
-from datetime import datetime, timezone, timedelta
 from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
 
 # Константа кількості ітерацій для PBKDF2
 HASH_ITERATIONS = 100_000
 
+
 class User:
-    def __init__(self, username: str, email: str, role: str = "user", active: bool = True):
+    def __init__(
+        self, username: str, email: str, role: str = "user", active: bool = True
+    ):
         self.username = username
         self.role = role
         self.active = active
         self._email = None
         self.email = email  # Виклик setter-а
-        
+
         # Приватні атрибути для пароля
         self.__password_hash = None
         self.__password_salt = None
@@ -36,21 +39,15 @@ class User:
     def set_password(self, password: str) -> None:
         self.__password_salt = os.urandom(16)
         self.__password_hash = hashlib.pbkdf2_hmac(
-            "sha256", 
-            password.encode("utf-8"), 
-            self.__password_salt, 
-            HASH_ITERATIONS
+            "sha256", password.encode("utf-8"), self.__password_salt, HASH_ITERATIONS
         )
 
     def check_password(self, password: str) -> bool:
         if not self.__password_hash or not self.__password_salt:
             return False
-        
+
         test_hash = hashlib.pbkdf2_hmac(
-            "sha256", 
-            password.encode("utf-8"), 
-            self.__password_salt, 
-            HASH_ITERATIONS
+            "sha256", password.encode("utf-8"), self.__password_salt, HASH_ITERATIONS
         )
         # Використовуємо hmac.compare_digest для захисту від timing атак
         return hmac.compare_digest(self.__password_hash, test_hash)
@@ -64,7 +61,9 @@ class User:
 
 # Наслідування від User
 class Admin(User):
-    def __init__(self, username: str, email: str, active: bool = True, permissions: list = None):
+    def __init__(
+        self, username: str, email: str, active: bool = True, permissions: list = None
+    ):
         super().__init__(username, email, role="admin", active=active)
         self.permissions = set(permissions) if permissions else set()
 
@@ -109,7 +108,9 @@ class AuditLog:
         self.logs = []
 
     def add_log(self, username: str, action: str) -> None:
-        entry = AuditEntry(timestamp=datetime.now(timezone.utc), username=username, action=action)
+        entry = AuditEntry(
+            timestamp=datetime.now(timezone.utc), username=username, action=action
+        )
         self.logs.append(entry)
 
     def show_all(self) -> None:
@@ -130,7 +131,7 @@ class UserAccount:
         if self.user.username != username or not self.user.active:
             self.audit_log.add_log(username, "login_failure")
             return False
-            
+
         if self.user.check_password(password):
             self.session = Session(ip)
             self.audit_log.add_log(username, "login_success")
@@ -142,7 +143,7 @@ class UserAccount:
     def is_authenticated(self) -> bool:
         if not self.session:
             return False
-            
+
         if self.session.is_active(self.SESSION_TIMEOUT_SEC):
             self.session.touch()
             return True

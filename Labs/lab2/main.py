@@ -1,9 +1,11 @@
 import sys
-from .task1 import User, Admin, UserAccount, AuditLog
+
+from .task1 import Admin, AuditLog, User, UserAccount
+
 
 def run_demo():
     print("=== Демонстрація Завдання 1 ===")
-    
+
     # 1. Створення звичайного користувача
     try:
         user1 = User("illia_kb201", "illia.tkachenko@lpnu.ua")
@@ -29,24 +31,25 @@ def run_demo():
     # 4. Система логіну та композиція
     audit = AuditLog()
     account = UserAccount(user1, audit)
-    
+
     print("\nСпроба входу з неправильним паролем:")
     account.login("illia_kb201", "WrongPass", "192.168.1.100")
-    
+
     print("Спроба успішного входу:")
     account.login("illia_kb201", "SecurePass123!", "192.168.1.100")
-    
+
     print(f"Чи автентифікований користувач? {account.is_authenticated()}")
-    
+
     # Використання __getitem__
     print(f"\nДоступ через __getitem__: {account['user'].username}")
 
     # 5. Вихід із системи
     account.logout()
-    
+
     # 6. Вивід AuditLog
     print("\n=== Журнал аудиту ===")
     audit.show_all()
+
 
 if __name__ == "__main__":
     # Проста перевірка аргументів для виклику команди demo
