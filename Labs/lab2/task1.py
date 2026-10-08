@@ -62,7 +62,11 @@ class User:
 # Наслідування від User
 class Admin(User):
     def __init__(
-        self, username: str, email: str, active: bool = True, permissions: list = None
+        self,
+        username: str,
+        email: str,
+        active: bool = True,
+        permissions: list | None = None,
     ):
         super().__init__(username, email, role="admin", active=active)
         self.permissions = set(permissions) if permissions else set()
