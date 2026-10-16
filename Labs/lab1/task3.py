@@ -3,7 +3,7 @@ import hashlib
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from functools import wraps
 
 # Підключення спільного модуля
@@ -41,7 +41,7 @@ def log_event(func):
             "event": "login",
             "user": username,
             "result": "success" if result else "failure",
-            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
             "args": list(args),
             "kwargs": kwargs,
         }
