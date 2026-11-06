@@ -5,8 +5,8 @@ import sqlite3
 from contextlib import closing
 from typing import Any
 
-from labs.lab03.database import get_connection
-from labs.lab03.schemas import CategoryCreate, RecordCreate, RecordReplace
+from Labs.lab3.database import get_connection
+from Labs.lab3.schemas import CategoryCreate, RecordCreate, RecordReplace
 
 logger = logging.getLogger(__name__)
 

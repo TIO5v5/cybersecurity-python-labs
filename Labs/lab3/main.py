@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from labs.lab03.config import (
+from Labs.lab3.config import (
     DOMAIN_DESCRIPTION,
     DOMAIN_TITLE,
     MAX_VALUE,
@@ -13,9 +13,9 @@ from labs.lab03.config import (
     THRESHOLD,
     UNIT,
 )
-from labs.lab03.database import initialize_database
-from labs.lab03.routers import categories, records
-from labs.lab03.schemas import PingResponse, StudentResponse
+from Labs.lab3.database import initialize_database
+from Labs.lab3.routers import categories, records
+from Labs.lab3.schemas import PingResponse, StudentResponse
 from shared import student
 
 

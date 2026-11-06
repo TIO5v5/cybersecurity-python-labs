@@ -4,9 +4,9 @@ from typing import Annotated
 
 from fastapi import APIRouter, Body, HTTPException, Path, Query, status
 
-from labs.lab03 import repository
-from labs.lab03.config import MAX_VALUE, MIN_VALUE
-from labs.lab03.schemas import RecordCreate, RecordRead, RecordReplace, StatusType
+from Labs.lab3 import repository
+from Labs.lab3.config import MAX_VALUE, MIN_VALUE
+from Labs.lab3.schemas import RecordCreate, RecordRead, RecordReplace, StatusType
 
 router = APIRouter(prefix="/records", tags=["records"])
 

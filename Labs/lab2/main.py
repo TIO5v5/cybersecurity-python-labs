@@ -56,4 +56,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "demo":
         run_demo()
     else:
-        print("Вкажіть команду. Наприклад: python -m labs.lab02.main demo")
+        print("Вкажіть команду. Наприклад: python -m Labs.lab02.main demo")

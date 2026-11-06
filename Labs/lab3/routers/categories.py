@@ -4,8 +4,8 @@ from typing import Annotated
 
 from fastapi import APIRouter, HTTPException, Path, status
 
-from labs.lab03 import repository
-from labs.lab03.schemas import CategoryCreate, CategoryRead
+from Labs.lab3 import repository
+from Labs.lab3.schemas import CategoryCreate, CategoryRead
 
 router = APIRouter(prefix="/categories", tags=["categories"])
 

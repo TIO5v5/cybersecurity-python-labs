@@ -8,8 +8,8 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from labs.lab03.database import BASE_DIR, get_connection, initialize_database
-from labs.lab03.schemas import SeedData
+from Labs.lab3.database import BASE_DIR, get_connection, initialize_database
+from Labs.lab3.schemas import SeedData
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)

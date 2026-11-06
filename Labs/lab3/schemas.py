@@ -4,7 +4,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from labs.lab03.config import MAX_VALUE, MIN_VALUE
+from Labs.lab3.config import MAX_VALUE, MIN_VALUE
 
 StatusType = Literal["new", "in_progress", "done"]
 
